@@ -1,0 +1,18 @@
+- model: studybuddy_app.review
+  pk: 1
+  fields:
+    title: War gute diese
+    author: 1
+    meetup: 24
+    date: 2023-06-29
+    review: Hat Spaß gemacht
+    rating: 5
+- model: studybuddy_app.review
+  pk: 2
+  fields:
+    title: Geiler Kurs
+    author: 2
+    meetup: 24
+    date: 2023-06-29
+    review: Hat Spaß gemacht
+    rating: 3

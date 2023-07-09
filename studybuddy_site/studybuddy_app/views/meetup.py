@@ -10,6 +10,7 @@ from ..models import Meetup
 from studybuddy_app.common.date import date_from_form
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+import logging
 
 
 class MeetupListView(LoginRequiredMixin, generic.ListView):
@@ -112,6 +113,15 @@ def rsvp(request, pk):
     if request.user.is_authenticated:
         meetup = Meetup.objects.get(pk=pk)
         meetup.participants.add(request.user)
+    return HttpResponseRedirect(
+        reverse("studybuddy_app:meetup.detail",
+                args=[meetup.id]))
+
+@login_required
+def cancel_participation(request, pk):
+    if request.user.is_authenticated:
+        meetup = Meetup.objects.get(pk=pk)
+        meetup.participants.remove(request.user)
     return HttpResponseRedirect(
         reverse("studybuddy_app:meetup.detail",
                 args=[meetup.id]))

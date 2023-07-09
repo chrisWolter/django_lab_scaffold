@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import user as user_views
 from .views import meetup as meetup_views
+from .views import review_list
 from .views.meetup import MeetupListView
 from .views.meetup import MeetupDetailView
 app_name = "studybuddy_app"
@@ -8,6 +9,7 @@ app_name = "studybuddy_app"
 urlpatterns = [
 
     path("meetups/<int:pk>/rsvp/", meetup_views.rsvp, name="meetup.rsvp"),
+    path("meetups/<int:pk>/cancel_participation/", meetup_views.cancel_participation, name="meetup.cancel_participation"),
 
     path("meetups/<int:pk>/", MeetupDetailView.as_view(), name="meetup.detail"),
     path("meetups", MeetupListView.as_view(), name="meetup.list"),
@@ -18,7 +20,9 @@ urlpatterns = [
 
     path("", MeetupListView.as_view(), name="index"),
 
-    path("users/<int:pk>", user_views.detail, name="user.detail")
+    path("users/<int:pk>", user_views.detail, name="user.detail"),
+
+    path('reviews/', review_list.ReviewListView.as_view(), name='review_list'),
 ]
 
 # https://restfulapi.net/

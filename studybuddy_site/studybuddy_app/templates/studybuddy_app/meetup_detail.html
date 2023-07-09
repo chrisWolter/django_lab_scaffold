@@ -13,7 +13,11 @@
 <p>Duration: {{ meetup.duration }}</p>
 <hr/>
 
-<a href="{% url 'studybuddy_app:meetup.rsvp' meetup.id %}" name="rsvp">Participate</a>
+    {% if user in participants %}
+        <a href="{% url 'studybuddy_app:meetup.cancel_participation' meetup.id %}" name="cancel_participation">Cancel Participation</a>
+    {% else %}
+        <a href="{% url 'studybuddy_app:meetup.rsvp' meetup.id %}" name="rsvp">Participate</a>
+    {% endif %}
 
 <h2>Participants</h2>
 

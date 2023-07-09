@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block content %}
+    <h1>Reviews</h1>
+    {% for review in review_list %}
+        <div>
+            <h3>{{ review.title }}</h3>
+            <p>{{ review.author.get_full_name }}</p>
+            <p>{{ review.description }}</p>
+            <p>{{ review.meetup.title }}</p>
+            <p>{{ review.date }}</p>
+            <p>Rating: {{ review.rating }}</p>
+            <p>Description: {{ review.review }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
