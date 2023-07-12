@@ -7,9 +7,13 @@
     {% for review in review_list %}
         <div>
             <h3>{{ review.title }}</h3>
-            <p>{{ review.author.get_full_name }}</p>
+            <a href="{% url 'studybuddy_app:user.detail' review.author.id %}">
+        {{ review.author.get_full_name }}
+    </a>
             <p>{{ review.description }}</p>
-            <p>{{ review.meetup.title }}</p>
+            <a href="{% url 'studybuddy_app:meetup.detail' review.meetup.id %}">
+        {{ review.meetup.title }}
+    </a>
             <p>{{ review.date }}</p>
             <p>Rating: {{ review.rating }}</p>
             <p>Description: {{ review.review }}</p>
